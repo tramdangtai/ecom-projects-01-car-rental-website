@@ -1,0 +1,1156 @@
+/* Explain: Nhập font từ gg font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Explain: Kiểu giống như tạo biến vậy. Sau dùng biến này, thì sẽ có sự đồng nhất kiểu dáng, màu sắc. 
+Sau thay đổi cũng dễ 
+max-width: 1200px - xác định chiều rộng lớn nhất của phần tử
+*/
+:root {
+    --primary-color: #8a79f0;
+    --primary-color-dark: #2e2a40;
+    --text-dark: #221e36;
+    --text-light: #767268;
+    --extra-light: #f1f2ff;
+    --white: #ffffff;
+    --max-width: 1200px;
+  }
+
+
+/* Explain: margin, padding: - Vì mặc định  margin và padding là có 1 khoảng sẵn khi tạo các phẩn tử. Làm này để toàn bộ đều về 0 hết.
+Thì khi thiết kế, sẽ từ đầu, dễ kiểm soát hơn.
+Thêm 1 công dụng nữa của 2 này, cụ thể là padding: là khi tạo ul hay ol, thì cái ký tự trước phía list sẽ bị xóa. Đỡ phải viết code xóa.
+
+box-sizing: border-box - khi viết code này, thì khi mình đặt chiều rộng, cao của phần tử, thì web sẽ lấy số đó làm số lớn nhất 
+(là số bao gồm cả các padding, maring...ở bên trong luôn), nội dung sẽ co lại vào bên trong. 
+Điều này giúp việc xác định cỡ phần tử dễ dàng hơn nhiều.
+*/
+/* Explain: khi */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+
+/* Explain: Kiểu page của mình sẽ chia ra nhiều section. Thì mỗi section lớn sẽ có class là "section__container". 
+Cài này 1 lần cho nhiều section luôn
+
+width: var(--max-width) - lấy từ biến "--max-width" bên trên. Dùng cái này thì phần tử có thể co lại trên các thiết bị nhỏ, 
+nhưng sẽ không vượt quá giá trị giới hạn tối đa.
+
+margin: auto - căn giữa phần tử theo chiều ngang. 
+
+Giải thích rem: là đơn vị đo độ dài trong css. 1 rem = kích thước font chữ mặc định của phần tử html (root). 
+Nếu font-size: 16px thì 1rem = 16px 
+padding: 5rem 1rem - padding top & bottom = 5rem, paddng left & right = 1rem
+*/
+.section__container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 5rem 1rem;
+  }
+
+/* Explain: Tương tự như trên. Này là cấu trúc của section mà lập trình viên này cấu hình. Mỗi section sẽ có header và des của section đó.*/
+/* Explain: 
+line-height: 3.25rem - khoảng thở giữa các dòng nếu tiêu đề có nhiều dòng. Giúp chữ dễ đọc hơn, không bị dính vào nhau.
+text-align: center - Căn giữa chữ theo chiều ngang trong phần tử cha
+*/
+.section__header {
+margin-bottom: 1rem;
+font-size: 2.5rem;
+font-weight: 600;
+color: var(--text-dark);
+line-height: 3.25rem;
+text-align: center;
+}
+
+.section__description {
+color: var(--text-light);
+text-align: center;
+line-height: 1.5rem;
+}
+
+/* Explain: Tương tự như trên, nhưng đây là cho nút button. Miễn CSS nào có class là .btn thì sẽ áp dụng cái này*/
+/* Explain: 
+outline: none - Loại bỏ đường viền mặc định khi phần tử được focus.
+Chỗ này nếu loại bỏ, thì cần set lại hover để đảm bảo truy cập được khi dùng chuột bấm nha.
+border: none - Loại bỏ viền mặc định của button. Giúp dễ dàng tùy biến style mà không bị ảnh hưởng bởi mặc định của trình duyệt.
+border-radius: bo tròn góc.
+transition: 0.3s: Tạo hiệu ứng chuyển đổi mượt mà khi hover, focus
+*/
+.btn {
+    padding: 0.75rem 1.5rem;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--primary-color);
+    border-radius: 0.5rem;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+
+.btn:hover {
+    background-color: var(--primary-color-dark);
+}
+
+
+/* Explain: Phù hợp trang web có các liên kết nội bộ (anchor links), như menu nhảy tới từng phần.
+Vì việc cuộn trang có thể bị ảnh hưởng bởi cả html và body, nên gán cho cả hai để đảm bảo tương thích tuyệt đối trên all trình duyệt.
+Hiệu ứng: cuộn từ từ đến phần tử thay vì nhảy thẳng ngay lập tức.
+*/
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+/* Explain: align-items: center - canh giữa theo chiều cao */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    max-width: 35px;
+  }
+
+
+/* Explain: white-space: nowrap - giữ nội dung luôn nằm trên một dòng duy nhất – không bị xuống dòng, dù không đủ chỗ. */
+.logo span {
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--white);
+    white-space: nowrap;
+    }
+    
+img {
+    display: flex;
+    width: 100%;
+    }
+
+/* Explain: text-decoration: none - bỏ gạch chân chỗ link a */
+a {
+text-decoration: none;
+transition: 0.3s;
+}
+
+ul {
+    list-style: none;
+  }
+
+body {
+    font-family: "Roboto", sans-serif;
+    }
+
+
+/* NOTE: Mấy đoạn bên trên này dường như là thói quen, nguyên tắc viết code riêng của lập trình viên này. */
+
+/* Explain: background: linear-gradient: Tạo hiệu ứng nền chuyển màu mờ dần, từ màu trong suốt sang màu tím nhạt có độ mờ nhẹ
+to bottom: Gradient sẽ đi theo hướng từ trên xuống dưới (trục dọc) (màu bắt đầu từ trên, và kết thúc ở phía dưới)
+màu bắt đầu: rgba(138, 121, 240, 0) - chỗ 0 là alpha = 0 (độ mờ hoàn toàn).
+màu kết thúc: rgba(138, 121, 240, 0.1) - chỗ 0.1 là alpha = 0.1 (độ mờ rất nhẹ).
+
+Công dụng: Tạo hiệu ứng nền trong suốt dần, phù hợp cho header có nền trong, hoặc header nổi.
+*/
+header {
+    background: linear-gradient(
+      to bottom,
+      rgba(138, 121, 240, 0),
+      rgba(138, 121, 240, 0.1));
+  }
+
+/* Explain: position: fixed - Giữ nav cố định ở vị trí đã định trên màn hình
+isolation: isolate - ngữ cảnh xếp lớp (stacking context) riêng biệt cho phần tử nav.
+Nếu có nền blur trong nav, dùng sẽ giúp hiệu ứng không bị ảnh hưởng ngoài ý muốn từ background phía sau.
+width: 100% - Làm cho thanh điều hướng rộng toàn bộ chiều ngang của trang.
+z-index: 1 - Giúp nav nằm trên các phần tử khác. Mặc định z-index = 0
+Rất cần thiết khi bạn dùng position: fixed, để tránh thanh nav bị ẩn dưới nội dung khác.
+*/
+nav {
+position: fixed;
+isolation: isolate;
+width: 100%;
+z-index: 1;
+}
+
+/* Explain:  
+padding: 0.75rem 1rem - giúp nav không dính sát mép (có khoảng trống)
+width: 100% - trải dài toàn chiều ngang của phần cha (ở đây là nav)
+justify-content: space-between - Canh theo chiều ngang. Hay dùng cho header có 2 thành phần ở 2 bên.
+*/
+.nav__header {
+    padding: 0.75rem 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-color-dark);
+  }
+
+.nav__logo .logo-dark {
+display: none;
+}
+
+.nav__menu__btn {
+    font-size: 1.5rem;
+    color: var(--white);
+    cursor: pointer;
+  }
+
+.nav__links{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: var(--primary-color-dark);
+    transition: transform 0.3s;
+    z-index: -1;
+}
+/* Explain: transform: translateY(100%) 
+transform dùng để biến đổi vị trí/hiệu ứng của phần tử
+translateY(100%): Dời phần tử theo chiều dọc (Y) xuống 100% chiều cao của chính nó*/
+.nav__links.open {
+    transform: translateY(100%);
+  }
+
+.nav__links a {
+color: var(--white);
+}
+
+.nav__links a:hover {
+color: var(--primary-color);
+}
+
+.nav__btns {
+display: none;
+}
+
+.header__container {
+  padding-top: 5rem;
+  display: grid;
+}
+
+/* position: relative;
+Định vị phần tử .header__image để làm gốc tọa độ cho các phần tử con position: absolute, 
+như ::before. 
+
+isolation: isolate;
+Cô lập lớp con khỏi ảnh hưởng từ lớp cha, thường để đảm bảo hiệu ứng z-index hoạt động đúng (giống như tạo lớp riêng).
+Hữu ích khi bạn dùng hiệu ứng nền, đổ bóng, hoặc layering.
+
+overflow: hidden;
+Ẩn phần nội dung thừa vượt ra khỏi .header__image, tránh bị tràn khung.
+Đặc biệt quan trọng với hiệu ứng ::before vì phần đó được đặt absolute.
+*/
+.header__image{
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* ::before
+Là pseudo-element (phần tử ảo) được chèn vào trước nội dung chính của .header__image.
+dùng để tạo hiệu ứng nền, layer mờ, hình ảnh trang trí...
+position: absolute;
+Đặt hiệu ứng này nằm chồng lên nội dung chính của .header__image
+left: 5rem;
+Dịch phần tử sang phải 5rem → tạo hiệu ứng "nền lệch".
+background-color: var(--primary-color); opacity: 0.2;
+Tạo lớp nền màu chính của website với độ trong suốt (20%) → nhìn nhẹ nhàng, không quá nổi bật.
+z-index: -1;
+Đưa lớp ::before ra phía sau nội dung chính, tạo cảm giác như lớp nền phía dưới.
+ */
+.header__image::before{
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 5rem;
+  background-color: var(--primary-color);
+  opacity: .2;
+  border-top-left-radius: 2rem;
+  z-index: -1;  
+}
+
+/* padding-block: 2rem 5rem;
+Là viết tắt cho:
+padding-top: 2rem;
+padding-bottom: 5rem; 
+
+padding-inline: 1rem;
+Là viết tắt cho:
+padding-left: 1rem;
+padding-right: 1rem;
+*/
+.header__content {
+  padding-block: 2rem 5rem;
+  padding-inline: 1rem;
+}
+
+/* box-shadow: offset-x offset-y blur-radius color;
+Bóng lệch sang phải, dưới: 5px
+Bóng có độ mờ lan ra 10px (mềm, nhẹ)
+rgba(0, 0, 0, 0.05): Màu đen với độ mờ 5% – rất nhẹ, gần như trong suốt
+*/
+.header__content h2 {
+  width: fit-content;
+  margin-inline: auto;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  background-color: var(--white);
+  border-radius: 5rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+.header__content h1 {
+  margin-bottom: 2rem;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+/* flex-wrap: wrap;	
+Cho phép xuống dòng khi không đủ chỗ, rất hữu ích khi form có nhiều input trên thiết bị nhỏ. */
+.header__form form {
+  max-width: 900px;
+  margin-inline: auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background-color: var(--white);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+}
+
+/* flex: 1 0 170px;	Đây là viết tắt của flex-grow, flex-shrink, flex-basis:
+– 1 = Cho phép phần tử mở rộng nếu còn không gian.
+– 0 = Không co lại nếu thiếu không gian.
+– 170px = Kích thước cơ sở (flex-basis) là 170px.
+👉 Nghĩa là: mỗi nhóm input tối thiểu 170px, và sẽ giãn ra khi có thêm chỗ. Rất linh hoạt và responsive. */
+.header__form .input__group {
+  flex: 1 0 170px;
+  display: grid;
+  gap: 10px;
+}
+
+.header__form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.header__form input {
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+/* Placeholder (chữ mờ hướng dẫn trong input) cũng được tô màu giống như nội dung chính, 
+tạo cảm giác đồng bộ. */
+.header__form input::placeholder {
+  color: var(--text-light);
+}
+
+.header__form .btn {
+  padding: 15px 17px;
+}
+
+.about__container .section__description {
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: 4rem;
+}
+
+/*display: grid - các phần tử con trực tiếp của nó sẽ trở thành các grid item và có thể được sắp xếp theo một hệ thống lưới hai chiều (hàng và cột). */
+/* gap: 2rem 1rem; là 
+row-gap: 2rem;
+column-gap: 1rem;
+ */
+.about__grid {
+  display: grid;
+  gap: 2rem 1rem;
+}
+
+.about__card {
+  max-width: 300px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.about__card span {
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  padding: 16px 20px;
+  border-radius: 1.25rem;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Chọn phần tử đầu tiên (child thứ 1) trong danh sách các .about__card (tức là thẻ đầu tiên trong nhóm).
+:nth-child(1) là CSS pseudo-class dùng để nhắm đến phần tử con theo thứ tự.
+span: tác động đến span */
+.about__card:nth-child(1) span {
+  color: #8a79f0;
+  background-color: #eeebfd;
+}
+
+.about__card:nth-child(2) span {
+  color: #fba55b;
+  background-color: #fff2e8;
+}
+
+.about__card:nth-child(3) span {
+  color: #ee6a6f;
+  background-color: #fde9ea;
+}
+
+.about__card h4 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.about__card p {
+  color: var(--text-light);
+  line-height: 1.5rem;
+}
+
+
+/* DEAL SECTION */
+.deals {
+  background-color: var(--extra-light);
+}
+
+.deals__container .section__description {
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: 4rem;
+}
+
+.deals__tabs {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.deals__tabs .btn {
+  font-weight: 600;
+  color: var(--primary-color-dark);
+  background-color: var(--white);
+}
+
+.deals__tabs .btn.active {
+  color: var(--white);
+  background-color: var(--primary-color);
+  box-shadow: 0px 0px 20px rgb(0, 0, 0,0.1);
+}
+
+/* animation: fadeEffect 1s: 
+áp dụng hiệu ứng mờ dần trong 1 giây khi tab được hiển thị. 
+Hiệu ứng fadeEffect là mình tự tạo. Tên cũng là tự đặt.
+
+*/
+.deals__container .tab__content{
+  display: none;
+  gap: 1rem;
+  animation: fadeEffect 1s;
+}
+
+/* Đây là hiệu ứng mờ dần:
+Bắt đầu (from) với độ mờ hoàn toàn (opacity: 0).
+Kết thúc (to) với độ rõ hoàn toàn (opacity: 1).
+
+@keyframes trong CSS dùng để định nghĩa một animation (hiệu ứng chuyển động) theo từng bước (gọi là keyframes).*/
+
+/* 
+@keyframes tên_animation {
+  from {
+    trạng thái bắt đầu 
+  }
+  to {
+     trạng thái kết thúc 
+  }
+}
+
+Nhớ: đặt tên rồi dùng nó trong animation là được.*/
+@keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.deals__container .tab__content.active {
+  display: grid;
+}
+
+.deals__card {
+  padding: 1rem;
+  background-color: var(--white);
+  border-radius: 1rem;
+  box-shadow: 0px 0px 20px rgb(0, 0, 0,0.1);
+}
+
+.deals__card img {
+  margin-bottom: 1rem;
+}
+
+.deals__rating {
+  margin-bottom: 1rem;
+  color: goldenrod;
+}
+
+.deals__rating span:last-child {
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.deals__card h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+/* grid-template-columns: repeat(2, 1fr)
+Tạo 2 cột có chiều rộng bằng nhau
+ gap: 1rem - là gap bên ngoài, giữa 4 item grid
+*/
+.deals__card__grid {
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* gap: 10px - là gap nhỏ giữa icon và text */
+.deals__card__grid div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-light);
+}
+
+.deals__card__grid div span {
+  font-size: 1.2rem;
+}
+
+/* justify-content: space-between - căn khoảng cách Trái Phải sát mép, khoảng cách giữa đều */
+.deals__card__footer {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.deals__card__footer h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.deals__card__footer h3 span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-light);
+}
+
+.deals__card__footer a {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.deals__card__footer a:hover {
+  color: var(--primary-color-dark);
+}
+
+/* SECTION - WHY CHOSE US */
+.choose__container {
+  display: grid;
+}
+
+.choose__content {
+  padding-block: 2rem 4rem;
+  padding-inline: 1rem;
+}
+.choose__content .section__header {
+  padding-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.choose__grid {
+  padding-top: 2.5rem;
+  display: grid;
+  gap: 2rem 1rem;
+}
+
+.choose__card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.choose__card span {
+  padding: 5px 7px;
+  color: var(--primary-color);
+  background-color: var(--extra-light);
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.choose__card h4 {
+  color: var(--text-dark);
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.choose__card p{
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.2rem;
+}
+
+
+
+
+/* SUBCRIBE SECTION */
+/* position: relative - định vị container này là gốc tọa độ cho các phần tử con dùng position: absolute 
+overflow: hidden - ẩn những gì vượt ra ngoài container: .subscribe__container
+*/
+.subscribe__container {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  overflow: hidden;
+  background-color: var(--extra-light);
+}
+
+/* position: absolute - cho phép đặt phần tử ở vị trí mình mong muốn.
+content: "" - bắt buộc phải có để các pseudo-element hoạt động (dù không hiển thị chữ gì).
+width: 100%; height: 3rem - Pseudo-element là một dải ngang cao 3rem, kéo dài toàn chiều rộng container.
+top, left: 0 - Đặt nó sát góc trên bên trái của .subscribe__container
+z-index: -1 --> đặt sau nội dung chính nhờ giá trị âm.
+
+Mục đích: hiệu ứng tạo đường kẻ trên, màu giống màu nền, làm hình ảnh như được thoát khỏi bố cục. Rất đẹp.
+*/
+.subscribe__container::before, 
+.subscribe__container::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 3rem;
+  top: 0;
+  left: 0;
+  background-color: var(--white);
+  z-index: -1;
+}
+
+/* top: unset - hủy bỏ giá trị top: 0 đã được khai báo trước đó - loại bỏ after ở phía trên.
+bottom: 0; - Dòng này thiết lập lại vị trí cho ::after, để nó nằm ở phía dưới 
+(bottom của phần tử .subscribe__container). 
+
+Mục đích: hiệu ứng tạo đường kẻ dưới, màu giống màu nền.
+*/
+.subscribe__container::after {
+  top: unset;
+  bottom: 0;
+}
+
+.subscribe__content {
+  padding-block: 2rem 8rem;
+  padding-inline: 1rem;
+}
+
+.subscribe__content form {
+  margin-top: 2rem;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 5px;
+}
+
+.subscribe__content input {
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--text-dark);
+  padding-inline: 1rem;
+  background-color: transparent;
+}
+
+.subscribe__content .btn {
+  padding-block: 1rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* CLIENT SECTION */
+.client__container {
+  padding-bottom: 1rem;
+}
+
+.client__container .section__description {
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.swiper {
+  padding-block: 4rem;
+  width: 100%;
+}
+
+.swiper-slide {
+  min-width: 375px;
+}
+
+.client__card {
+  padding: 1.5rem;
+  background-color: var(--white);
+  border-radius: 1rem;
+  box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.3);
+  transition:0.3s;
+}
+
+.client__card:hover {
+  box-shadow: 0px 0px 30px rgb(0, 0, 0, 0.9);
+}
+
+.client__details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.client__details img{
+  border-radius: 100%;
+  max-width: 50px;
+}
+
+.client__details h4 {
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.client__rating {
+  color: goldenrod;
+}
+
+.client__card p {
+  color: var(--text-light);
+  line-height: 1.5rem;
+}
+
+/* FOOTER SECTION */
+.footer {
+  background-color: var(--primary-color-dark);
+}
+
+/* gap: 4rem 2rem;
+    row-gap: 4rem;
+    column-gap: 2rem; */
+.footer__container {
+  display: grid;
+  gap: 4rem 2rem;
+}
+
+.footer__logo {
+  margin-bottom: 2rem;
+}
+
+.footer__logo img {
+  max-width: 45px;
+}
+
+.footer__col p {
+  margin-bottom: 1.5rem;
+  color: var(--extra-light);
+  line-height: 1.5rem;
+}
+
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer__socials a {
+  padding: 6px 8px;
+  font-size: 1.125rem;
+  color: var(--text-dark);
+  background-color: var(--white);
+  border-radius: 100%;
+}
+
+.footer__socials a:hover {
+  color: var(--white);
+  background-color: var(--primary-color);
+}
+
+.footer__col h4 {
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.footer__links {
+  display: grid;
+  gap: .5rem;
+}
+
+.footer__links a {
+  color: var(--extra-light);
+}
+
+.footer__links a:hover {
+  color: var(--primary-color);
+}
+
+.footer__links span {
+  display: inline-block;
+  padding: 4px 6px;
+  margin-right: 10px;
+  border: 1px solid var(--extra-light);
+  border-radius: 100%;
+}
+
+/* Này là tô màu của span luôn. Còn hover bên trên chỉ tô màu của a, không có của span*/
+.footer__links a:hover span {
+  border-color: var(--primary-color);
+}
+
+.footer__bar {
+  color: var(--extra-light);
+  padding: 1rem;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.footer__links li {
+  width: fit-content;
+}
+
+
+
+
+
+
+/* MEDIA SCREEN: ABOVE 540px (SCREEN TABLET)*/
+/* grid-template-columns
+Định nghĩa số lượng và kích thước cột trong CSS Grid.
+repeat(2, 1fr) - Là một cách viết ngắn gọn cho: grid-template-columns: 1fr 1fr;
+
+Công dụng: Tạo 2 cột.
+Mỗi cột chiếm 1 phần bằng nhau (1 fraction = 1fr) của tổng chiều rộng lưới.
+
+*/
+@media (width > 540px) {
+  .about__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .deals__container .tab__content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .deals__card__footer{
+    gap: 0.7rem;
+  }
+  .footer__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .choose__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+
+/* MEDIA SCREEN: ABOVE 768px (SCREEN TABLET OR LAPTOP)*/
+/* Explain: nav -  */
+@media (width > 768px) {
+  /* position: static - đặt vị trí của nav về mặc định, k cố định nav nữa 
+  margin-inline: auto; - Canh giữa theo chiều ngang (trái-phải) cho nav
+  */
+  nav {
+    position: static;
+    padding: 1.5rem 1rem;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    margin-bottom: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  /* flex: 1; Cho phép .nav__header chiếm toàn bộ không gian còn lại trong layout Flexbox của nav. */
+  /* background-color: transparent; - Nền của phần tử sẽ là trong suốt (không có màu). */
+  .nav__header {
+    flex: 1;
+    padding: 0;
+    background-color: transparent;
+  }
+  .nav__logo img {
+    max-width: 45px;
+  }
+  .nav__logo .logo-dark {
+    display: flex;
+  }
+  .nav__logo .logo-white {
+    display: none;
+  }
+  .nav__logo span {
+    font-size: 1.5rem;
+    color: var(--primary-color-dark);
+  }
+  .nav__menu__btn {
+    display: none;
+  }
+
+  /* position: static;
+Đặt lại vị trí về mặc định (không bị ảnh hưởng bởi top/left/right/bottom).
+Trước đó (ở mobile), .nav__links dùng position: absolute để làm menu trượt lên xuống.
+Giờ ở desktop, menu hiển thị trực tiếp trên dòng, không cần hiệu ứng → dùng static. 
+width: fit-content;
+Chiều rộng của .nav__links sẽ tự động vừa đủ với nội dung bên trong, không kéo dài 100% nữa (code ở bên trên có width: 100%
+
+flex-direction: row;
+Bố trí các link trong .nav__links theo hàng ngang (mặc định là column ở mobile).
+Đây là yếu tố quan trọng để menu chuyển từ menu dọc → menu ngang.
+
+background-color: transparent;
+Làm nền trong suốt, thường để menu “nổi” trên nền của nav, không bị chồng màu.
+Ở mobile thì menu thường có màu nền riêng, nhưng ở desktop thì nền trong suốt sẽ đẹp hơn.
+
+transform: none !important;
+Xóa hiệu ứng transform trước đó (ví dụ: transform: translateY(100%) khi mở menu ở mobile).
+
+Dùng !important để đảm bảo ghi đè hoàn toàn các transform đã dùng trước đó – thường do JS thêm class .open.
+*/
+  .nav__links {
+    position: static;
+    width: fit-content;
+    padding: 0;
+    flex-direction: row;
+    background-color: transparent;
+    transform: none !important;
+  }
+
+  .nav__links a {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+
+  /* Chọn phần tử li cuối cùng bên trong .nav__links
+→ Ẩn nó đi (display: none). 
+Ở giao diện mobile, li:last-child có thể là một nút đặc biệt (ví dụ: nút đăng nhập, đăng ký, hoặc nút đóng menu).
+Khi lên desktop, phần đó không còn cần thiết, nên bị ẩn đi.*/
+  .nav__links li:last-child {
+    display: none;
+  }
+/* justify-content: flex-end - Đưa **các phần tử con** về **cuối dòng (bên phải)**.
+- Thường để căn các nút vào góc phải của thanh điều hướng */
+  .nav__btns {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Đây là phần tử chính sử dụng CSS Grid, với 4 cột:
+Cột rìa trái – linh hoạt (chiếm khoảng trắng)
+Cột nội dung trái – giới hạn trong --max-width / 2
+Cột hình ảnh phải – giới hạn tương tự
+Cột rìa phải – linh hoạt (khoảng trắng)
+
+Mục tiêu: căn giữa nội dung và hình ảnh trong một vùng chiều rộng hợp lý, 
+có khoảng trống 2 bên để website "thở"*/
+  .header__container {
+    padding-top: 0;
+    grid-template-columns: 
+      minmax(0, 1fr)
+      minmax(0, calc(var(--max-width) / 2))
+      minmax(0, calc(var(--max-width) / 2))
+      minmax(0, 1fr);
+  }
+
+
+  /* grid-area: 1 / 3 / 2 / 5; nghĩa là:
+Bắt đầu từ hàng 1, cột 3
+Kết thúc ở hàng 2, cột 5 → chiếm 2 cột phải (hình ảnh nằm bên phải)
+height: 100%: cao bằng grid container */
+  .header__image {
+    grid-area: 1/3/2/5;
+    height: 100%;
+  }
+
+/* position: absolute	Hình ảnh "thoát khỏi" luồng bố cục bình thường 
+Là phóng to thu nhỏ sẽ thấy. Hình ảnh k vỡ, k to or nhỏ theo bố cục, mà nó cứ ở đó, tương đối với div cha của nó
+top: 50% + translateY(-50%)	Căn giữa theo chiều dọc: thêm này nữa thì khi phóng to, thu nhỏ, hình ảnh sẽ căn giữ theo phần tử cha của nó.
+width: unset	Hủy chiều rộng mặc định (thường là 100%)
+height: 100%	Cao bằng khung .header__image
+*/
+  .header__image img {
+    padding-bottom: 5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: unset;
+    height: 100%;
+  }
+
+
+  .header__content {
+    padding-block: 2rem 10rem;
+    grid-area: 1/2/2/3;
+  }
+
+  /* margin-inline-start: unset	Xóa căn lề trái tự động nếu có từ trước */
+  .header__content h2 {
+    margin-inline-start: unset;
+   }
+
+  /* selector :is(selector1, selector2, ...) --> cú pháp CSS hiện đại 
+  :is(...) là hàm lựa chọn nhóm – dùng để gom nhiều selector lại trong một quy tắc CSS.
+  */
+  .header__content :is(h1, .section__description) {
+    text-align: left;
+  } 
+
+  /* transform: translateY(-50%) */
+  .header__form form {
+    padding: 1.5rem;
+    transform: translateY(-50%);
+  }
+  .about__container {
+    padding-top: 3rem;
+  }
+
+  .about__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .deals__container .tab__content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+
+  /* CONTAINER: SUBSCRIBE */
+  .subscribe__container {
+    grid-template-columns: 
+    minmax(0, 1fr)
+    minmax(0, calc(var(--max-width)/2))
+    minmax(0, calc(var(--max-width)/2))
+    minmax(0, 1fr);
+  }
+  .subscribe__image {
+    position: relative;
+    isolation: isolate;
+    grid-area: 1/3/2/5;
+    height: 100%;
+  }
+  .subscribe__image img {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: unset;
+    height: 100%;
+  }
+  .subscribe__content {
+    grid-area: 1/2/2/3;
+    padding-block: 8rem;
+  }
+  .subscribe__container :is(h2, p) {
+    text-align: left;
+  }
+  /* margin-inline-start: là thuộc tính lề (margin), tương đương với margin-left
+  Hủy bỏ mọi giá trị tùy chỉnh của margin-inline-start và 
+  trả lại giá trị mặc định hoặc kế thừa từ cha */
+  .subscribe__container form {
+    margin-inline-start: unset;
+  }
+
+  /* SECTION - WHY CHOSE US */
+  .choose__container {
+    grid-template-columns: 
+      minmax(0, 1fr)
+      minmax(0, calc(var(--max-width) / 2))
+      minmax(0, calc(var(--max-width) / 2))
+      minmax(0, 1fr);
+  }
+  .choose__image {
+    grid-area: 1/2/2/3;
+    position: relative;
+    isolation: isolate;
+    height: 100%;
+  }
+  .choose__image img {
+    position: absolute;
+    top: 50%;
+    height: 100%;
+    width: unset;
+    right: 0;
+    transform: translateY(-50%);
+  }
+  .choose__content {
+    grid-area: 1/3/2/5;
+  }
+  .choose__content :is(p, h2) {
+    text-align: left;
+  }
+
+  /* FOOTER SECTION */
+  .footer__container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
+
+
+
+
+
+@media (width > 1024px) {
+  .deals__container .tab__content {
+    gap: 1.5rem;
+  }
+  .deals__card {
+    gap: 1.5rem;
+  }
+}
+
